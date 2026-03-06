@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="container">
+
+<h1>Admin Dashboard</h1>
+
+<form action="/admin/add" method="POST" enctype="multipart/form-data">
+<input name="make" placeholder="Make">
+<input name="model" placeholder="Model">
+<input name="year" placeholder="Year">
+<input name="mileage" type="number" required>
+<input name="price" placeholder="Price">
+<input type="file" name="image">
+<button>Add Car</button>
+</form>
+
+<hr>
+
+<% cars.forEach(car=>{ %>
+<div class="card">
+<img src="<%= car.image %>">
+<h3><%= car.make %> <%= car.model %></h3>
+
+<form action="/admin/delete/<%= car.id %>" method="POST">
+<button>Delete</button>
+</form>
+
+</div>
+<% }) %>
+
+</div>
+
+</body>
+</html>

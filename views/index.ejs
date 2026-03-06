@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/css/styles.css">
+<title>Used Car Dealership</title>
+</head>
+<body>
+
+<header>
+<div class="container">
+<h1>Premium Used Cars by Kwota</h1>
+<p>Quality vehicles at affordable prices</p>
+<a href="/inventory">Browse Inventory</a>
+<a href="/auth/login">Admin Login</a>
+</div>
+</header>
+
+<div class="container">
+<h2>Featured Vehicle</h2>
+
+<% if(featured){ %>
+<div class="card">
+<img src="/uploads/<%= featured.image %>">
+<h3><%= featured.year %> <%= featured.make %> <%= featured.model %></h3>
+<p>$<%= featured.price %></p>
+<a href="/vehicle/<%= featured.id %>">View Details</a>
+</div>
+<% } %>
+
+</div>
+</body>
+</html>
