@@ -1,31 +1,54 @@
 
-import express from "express"
-import pool from "../config/db.js"
+import express from "express";
+import pool from "../config/db.js";
 
-const router=express.Router()
+const router = express.Router();
 
-router.get("/",async(req,res)=>{
-const featured=await pool.query("SELECT * FROM vehicles ORDER BY id DESC LIMIT 1")
-res.render("index",{featured:featured.rows[0]})
-})
+// Homepage - show latest vehicle
+router.get("/", async (req, res) => {
+  try {
+    const featured = await pool.query(
+      "SELECT * FROM vehicles ORDER BY id DESC LIMIT 1"
+    );
+    res.render("index", { featured: featured.rows[0] });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
 
-router.get("/inventory",async(req,res)=>{
-const {search}=req.query
-let query="SELECT * FROM vehicles"
-let values=[]
+// Inventory page with optional search
+router.get("/inventory", async (req, res) => {
+  try {
+    const { search } = req.query;
+    let query = "SELECT * FROM vehicles";
+    let values = [];
 
-if(search){
-query+=" WHERE make ILIKE $1 OR model ILIKE $1"
-values.push("%"+search+"%")
-}
+    if (search) {
+      query += " WHERE make ILIKE $1 OR model ILIKE $1";
+      values.push(`%${search}%`);
+    }
 
-const cars=await pool.query(query,values)
-res.render("inventory",{cars:cars.rows,search})
-})
+    const cars = await pool.query(query, values);
+    res.render("inventory", { cars: cars.rows, search });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
 
-router.get("/vehicle/:id",async(req,res)=>{
-const car=await pool.query("SELECT * FROM vehicles WHERE id=$1",[req.params.id])
-res.render("vehicle",{car:car.rows[0]})
-})
+// Individual vehicle page
+router.get("/vehicle/:id", async (req, res) => {
+  try {
+    const car = await pool.query(
+      "SELECT * FROM vehicles WHERE id=$1",
+      [req.params.id]
+    );
+    res.render("vehicle", { car: car.rows[0] });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
 
-export default router
+export default router;

@@ -1,9 +1,9 @@
+import pkg from "pg";
+const { Pool } = pkg;
 
-import pkg from "pg"
-const {Pool}=pkg
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL, // Use External Database URL from Render
+  ssl: { rejectUnauthorized: false }          // Required for Render Postgres
+});
 
-const pool=new Pool({
-connectionString:"postgresql://postgres:Future1001@localhost:5432/usedcars"
-})
-
-export default pool
+export default pool;
