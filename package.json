@@ -1,1 +1,18 @@
-{"name":"used-car-dealership-final","version":"1.0.0","type":"module","main":"server.js","scripts":{"start":"node server.js"},"dependencies":{"dotenv":"^17.3.1","ejs":"^3.1.9","express":"^4.19.2","express-session":"^1.17.3","multer":"^1.4.5-lts.1","pg":"^8.11.3"}}
+{
+  "name": "used-car-dealership-final",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "setup-db": "node dbSetup.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "express-session": "^1.17.3",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.3"
+  }
+}
