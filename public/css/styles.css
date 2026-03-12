@@ -87,3 +87,24 @@ border-radius:5px;
 .back-btn:hover{
 background:#746ed2;
 }
+
+.developer{
+background:white;
+margin-top:40px;
+padding:40px 0;
+}
+
+.dev-box{
+display:flex;
+align-items:center;
+gap:30px;
+}
+
+.dev-photo{
+width:180px;
+border-radius:10px;
+}
+
+.dev-text h2{
+margin-top:0;
+}
