@@ -1,26 +1,35 @@
 import express from "express"
 import multer from "multer"
+import { CloudinaryStorage } from "multer-storage-cloudinary"
+import cloudinary from "../config/cloudinary.js"
 import pool from "../config/db.js"
 
 const router = express.Router()
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "public/uploads"),
-  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname)
+// Cloudinary storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "cars",
+    allowed_formats: ["jpg", "png", "jpeg", "webp", "avif"]
+  }
 })
 
 const upload = multer({ storage })
 
+// Auth middleware
 function checkAuth(req, res, next) {
   if (!req.session.admin) return res.redirect("/auth/login")
   next()
 }
 
+// Dashboard
 router.get("/dashboard", checkAuth, async (req, res) => {
   const cars = await pool.query("SELECT * FROM vehicles ORDER BY id DESC")
   res.render("dashboard", { cars: cars.rows })
 })
 
+// Add vehicle
 router.post("/add", checkAuth, upload.single("image"), async (req, res) => {
 
   const { make, model, year, price, mileage } = req.body
@@ -29,7 +38,7 @@ router.post("/add", checkAuth, upload.single("image"), async (req, res) => {
 
   let image = null
   if (req.file) {
-    image = "/uploads/" + req.file.filename
+    image = req.file.path   // Cloudinary image URL
   }
 
   await pool.query(
@@ -40,6 +49,7 @@ router.post("/add", checkAuth, upload.single("image"), async (req, res) => {
   res.redirect("/admin/dashboard")
 })
 
+// Delete vehicle
 router.post("/delete/:id", checkAuth, async (req, res) => {
   await pool.query("DELETE FROM vehicles WHERE id=$1", [req.params.id])
   res.redirect("/admin/dashboard")
