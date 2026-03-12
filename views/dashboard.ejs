@@ -1,40 +1,90 @@
 
 <!DOCTYPE html>
+
 <html>
 <head>
 <link rel="stylesheet" href="/css/styles.css">
+<title>Admin Dashboard</title>
 </head>
+
 <body>
+
 <%- include("partials/navbar") %>
+
 <div class="container">
 
 <h1>Admin Dashboard</h1>
+
 <a href="/" class="back-btn">← Back to Home</a>
-<form action="/admin/add" method="POST" enctype="multipart/form-data">
-<input name="make" placeholder="Make">
-<input name="model" placeholder="Model">
-<input name="year" placeholder="Year">
-<input name="mileage" type="number" required>
-<input name="price" placeholder="Price">
-<input type="file" name="image">
-<button>Add Car</button>
+
+<h2>Add New Vehicle</h2>
+
+<form action="/admin/add" method="POST" enctype="multipart/form-data" class="add-form">
+
+<input name="make" placeholder="Make" required>
+<input name="model" placeholder="Model" required>
+<input name="year" type="number" placeholder="Year" required>
+<input name="mileage" type="number" placeholder="Mileage" required>
+<input name="price" placeholder="Price" required>
+<input type="file" name="image" required>
+
+<button type="submit">Add Car</button>
+
 </form>
 
 <hr>
 
-<% cars.forEach(car=>{ %>
-<div class="card">
-<img src="<%= car.image %>">
-<h3><%= car.make %> <%= car.model %></h3>
+<h2>Vehicle Inventory</h2>
 
-<form action="/admin/delete/<%= car.id %>" method="POST">
-<button>Delete</button>
+<table class="admin-table">
+
+<tr>
+<th>Image</th>
+<th>Vehicle</th>
+<th>Price</th>
+<th>Mileage</th>
+<th>Actions</th>
+</tr>
+
+<% cars.forEach(car => { %>
+
+<tr>
+
+<td>
+<img src="<%= car.image %>" class="thumb">
+</td>
+
+<td>
+<%= car.year %> <%= car.make %> <%= car.model %>
+</td>
+
+<td>
+$<%= Number(car.price).toLocaleString() %>
+</td>
+
+<td>
+<%= Number(car.mileage).toLocaleString() %> km
+</td>
+
+<td>
+
+<a href="/admin/edit/<%= car.id %>" class="edit-btn">Edit</a>
+
+<form action="/admin/delete/<%= car.id %>" method="POST" style="display:inline;">
+<button class="delete-btn">Delete</button>
 </form>
 
-</div>
+</td>
+
+</tr>
+
 <% }) %>
 
+</table>
+
 </div>
+
 <%- include("partials/footer") %>
+
 </body>
 </html>

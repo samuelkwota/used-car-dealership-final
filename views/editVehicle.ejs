@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<link rel="stylesheet" href="/css/styles.css">
+<title>Edit Vehicle</title>
+</head>
+
+<body>
+
+<%- include("partials/navbar") %>
+
+<div class="container">
+
+<h1>Edit Vehicle</h1>
+
+<form action="/admin/update/<%= car.id %>" method="POST">
+
+<label>Make</label> <input type="text" name="make" value="<%= car.make %>" required>
+
+<label>Model</label> <input type="text" name="model" value="<%= car.model %>" required>
+
+<label>Year</label> <input type="number" name="year" value="<%= car.year %>" required>
+
+<label>Price</label> <input type="text" name="price" value="<%= car.price %>" required>
+
+<label>Mileage</label> <input type="number" name="mileage" value="<%= car.mileage %>" required>
+
+<button type="submit">Update Vehicle</button>
+
+</form>
+
+</div>
+
+<%- include("partials/footer") %>
+
+</body>
+</html>

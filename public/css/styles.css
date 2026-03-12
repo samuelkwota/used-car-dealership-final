@@ -108,3 +108,57 @@ border-radius:10px;
 .dev-text h2{
 margin-top:0;
 }
+
+.edit-btn{
+background:#2d7ef7;
+color:white;
+padding:6px 10px;
+border-radius:5px;
+text-decoration:none;
+margin-right:5px;
+}
+
+.edit-btn:hover{
+background:#1c5ec7;
+}
+
+.admin-table{
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-top:20px;
+}
+
+.admin-table th,
+.admin-table td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+.thumb{
+width:80px;
+border-radius:6px;
+}
+
+.edit-btn{
+background:#2d7ef7;
+color:white;
+padding:6px 10px;
+border-radius:5px;
+text-decoration:none;
+margin-right:5px;
+}
+
+.delete-btn{
+background:#d9534f;
+color:white;
+border:none;
+padding:6px 10px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.delete-btn:hover{
+background:#c9302c;
+}
