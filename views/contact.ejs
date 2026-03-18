@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/css/styles.css">
+<title>Contact Dealer</title>
+</head>
+
+<body>
+
+<%- include("partials/navbar") %>
+
+<div class="container">
+
+<div class="contact-container">
+
+<h1>Contact Dealer</h1>
+
+<h3>
+<%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %>
+</h3>
+
+<form action="/contact" method="POST" class="contact-form">
+
+<input type="hidden" name="vehicle"
+value="<%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %>">
+
+<input type="text" name="name" placeholder="Your Name" required>
+
+<input type="email" name="email" placeholder="Your Email" required>
+
+<input type="text" name="phone" placeholder="Phone Number">
+
+<textarea name="message" placeholder="Write your message..." required></textarea>
+
+<button type="submit" class="send-btn">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<%- include("partials/footer") %>
+
+</body>
+</html>

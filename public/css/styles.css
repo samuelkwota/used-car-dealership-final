@@ -218,3 +218,60 @@ cursor:pointer;
 .contact-btn:hover{
 background:#114cac;
 }
+
+/* CONTACT DEALER PAGE */
+
+.contact-container{
+max-width:600px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contact-container h1{
+margin-bottom:10px;
+}
+
+.contact-container h3{
+color:#555;
+margin-bottom:25px;
+}
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:6px;
+font-size:14px;
+}
+
+.contact-form textarea{
+height:120px;
+resize:vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+outline:none;
+border-color:#2d7ef7;
+}
+
+.send-btn{
+width:100%;
+background:#2d7ef7;
+color:white;
+border:none;
+padding:14px;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.send-btn:hover{
+background:#1f5ec4;
+}
