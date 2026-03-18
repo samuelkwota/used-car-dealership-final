@@ -1,21 +1,67 @@
-
 <!DOCTYPE html>
+
 <html>
 <head>
 <link rel="stylesheet" href="/css/styles.css">
+<title><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></title>
 </head>
+
 <body>
+
 <%- include("partials/navbar") %>
+
 <div class="container">
 
-<img src="<%= car.image %>" style="width:400px">
+<a href="/inventory" class="back-btn">← Back to Inventory</a>
 
-<h1><%= car.year %> <%= car.make %> <%= car.model %></h1>
-<p>Price: $<%= car.price %></p>
+<div class="vehicle-page">
 
-<a href="/inventory">Back</a>
+<div class="vehicle-image">
+<img src="<%= vehicle.image %>">
+</div>
+
+<div class="vehicle-info">
+
+<h1>
+<%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %>
+</h1>
+
+<h2 class="price">
+$<%= Number(vehicle.price).toLocaleString() %>
+</h2>
+
+<ul class="vehicle-specs">
+
+<li>
+<strong>Year:</strong> <%= vehicle.year %>
+</li>
+
+<li>
+<strong>Mileage:</strong>
+<%= Number(vehicle.mileage).toLocaleString() %> km
+</li>
+
+<li>
+<strong>Make:</strong> <%= vehicle.make %>
+</li>
+
+<li>
+<strong>Model:</strong> <%= vehicle.model %>
+</li>
+
+</ul>
+
+<button class="contact-btn">
+Contact Dealer
+</button>
 
 </div>
+
+</div>
+
+</div>
+
 <%- include("partials/footer") %>
+
 </body>
 </html>

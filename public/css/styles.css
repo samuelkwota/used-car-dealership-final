@@ -13,7 +13,7 @@ background:#f2f2f2;
 }
 
 .container{
-width:90%;
+width:80%;
 max-width:1000px;
 margin:auto;
 }
@@ -162,3 +162,4 @@ cursor:pointer;
 .delete-btn:hover{
 background:#c9302c;
 }
+
