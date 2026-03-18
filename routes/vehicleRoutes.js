@@ -39,16 +39,16 @@ router.get("/inventory", async (req, res) => {
 
 // Individual vehicle page
 router.get("/vehicle/:id", async (req, res) => {
-  try {
-    const car = await pool.query(
-      "SELECT * FROM vehicles WHERE id=$1",
-      [req.params.id]
-    );
-    res.render("vehicle", { car: car.rows[0] });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server Error");
-  }
-});
+
+  const result = await pool.query(
+    "SELECT * FROM vehicles WHERE id=$1",
+    [req.params.id]
+  )
+
+  const vehicle = result.rows[0]
+
+  res.render("vehicle", { vehicle })
+
+})
 
 export default router;
