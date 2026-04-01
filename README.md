@@ -1,104 +1,130 @@
 # Used Car Dealership Web Application
 
-A full-stack web application that allows users to browse available vehicles while administrators can manage the dealership inventory.
+A full-stack dealership web application where users can browse vehicles and contact the dealer, while admins can manage inventory with a secure dashboard.
 
-The system was built using Node.js, Express, PostgreSQL, and EJS, with Cloudinary handling image storage.
+This project demonstrates real-world backend development with authentication, file uploads, database integration, and email functionality.
 
 ---
 
-## Features
+##  Features
 
 ### Public Website
 
-* View all available vehicles
-* Search vehicles by make or model
-* Vehicle detail pages
-* Featured vehicle on the homepage
+* Browse vehicle inventory
+* View detailed vehicle pages
+* Featured vehicle on homepage
+* Contact dealer via email form
 
 ### Admin Dashboard
 
-* Secure admin login
+* Secure admin login (session-based)
 * Add new vehicles
-* Edit existing vehicles
+* Edit vehicle details
 * Delete vehicles
 * Upload vehicle images
 
-### Technical Features
+### Backend Functionality
 
-* Express backend server
-* PostgreSQL relational database
-* Session-based authentication
-* Cloud image storage with Cloudinary
-* Image uploads using Multer
-* EJS dynamic templates
-* Responsive layout with shared navigation and footer
+* RESTful routing with Express
+* PostgreSQL database integration
+* Server-side rendering with EJS
+* Email sending using Nodemailer
+* Cloud image storage using Cloudinary
+* File uploads with Multer
+* Environment variable management with dotenv
 
 ---
 
-## Tech Stack
+##  Tech Stack
 
-Backend:
+**Backend**
 
 * Node.js
 * Express.js
 
-Database:
+**Database**
 
 * PostgreSQL
 
-Templating:
+**Frontend**
 
-* EJS
+* EJS (Embedded JavaScript Templates)
+* Custom CSS
 
-File Storage:
+**Cloud Services**
 
-* Cloudinary
-
-Other Tools:
-
-* Multer
-* Express Session
-* Dotenv
+* Cloudinary (image hosting)
+* Gmail (email via Nodemailer)
 
 ---
 
 ## Installation
 
-1. Clone the repository
+### 1. Clone the repository
 
-```
+```bash
 git clone https://github.com/yourusername/used-car-dealership.git
-```
-
-2. Navigate into the project folder
-
-```
 cd used-car-dealership
 ```
 
-3. Install dependencies
+---
 
-```
+### 2. Install dependencies
+
+```bash
 npm install
 ```
 
-4. Create a `.env` file
+---
 
-```
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-SESSION_SECRET=supersecret
-DATABASE_URL=your_postgresql_connection_string
+### 3. Create `.env` file
+
+```env
+DATABASE_URL=postgresql://postgres:Future1001@localhost:5432/usedcars
+SESSION_SECRET=supersecretkey
+NODE_ENV=development
+
+CLOUDINARY_CLOUD_NAME=dtgt843fg
+CLOUDINARY_API_KEY=387811145884753
+CLOUDINARY_API_SECRET=eQEHdkJ1WwY3iz2nbif0ThZR1t8
+
+EMAIL_USER=samuelkwota.sk@gmail.com
+EMAIL_PASS=yyrrvlvamilpbrxz
 ```
 
-5. Start the server
+---
 
+### 4. Setup PostgreSQL
+
+Create database:
+
+```sql
+CREATE DATABASE usedcars;
 ```
+
+Create table:
+
+```sql
+CREATE TABLE vehicles (
+  id SERIAL PRIMARY KEY,
+  make TEXT NOT NULL,
+  model TEXT NOT NULL,
+  year INT NOT NULL,
+  price NUMERIC NOT NULL,
+  mileage INT NOT NULL,
+  image TEXT
+);
+```
+
+---
+
+### 5. Run the app
+
+```bash
 npm start
 ```
 
-The application will run at:
+Open in browser:
 
 ```
 http://localhost:3000
@@ -106,53 +132,30 @@ http://localhost:3000
 
 ---
 
-## Database
-
-Create a PostgreSQL database called:
-
-```
-usedcars
-```
-
-Example table structure:
-
-```
-CREATE TABLE vehicles (
-id SERIAL PRIMARY KEY,
-make TEXT NOT NULL,
-model TEXT NOT NULL,
-year INT NOT NULL,
-price NUMERIC NOT NULL,
-mileage INT NOT NULL,
-image TEXT
-);
-```
-
----
-
-## Project Structure
+## 📂 Project Structure
 
 ```
 used-car-dealership
 │
 ├── config
-│   ├── cloudinary.js
-│   └── db.js
+│   ├── db.js
+│   └── cloudinary.js
 │
 ├── routes
+│   ├── vehicleRoutes.js
 │   ├── adminRoutes.js
-│   ├── authRoutes.js
-│   └── vehicleRoutes.js
+│   └── authRoutes.js
 │
 ├── views
 │   ├── partials
 │   │   ├── navbar.ejs
 │   │   └── footer.ejs
-│   ├── dashboard.ejs
-│   ├── editVehicle.ejs
 │   ├── index.ejs
 │   ├── inventory.ejs
-│   └── vehicle.ejs
+│   ├── vehicle.ejs
+│   ├── contact.ejs
+│   ├── dashboard.ejs
+│   └── editVehicle.ejs
 │
 ├── public
 │   ├── css
@@ -165,20 +168,37 @@ used-car-dealership
 
 ---
 
-## Future Improvements
+## 📧 Contact Feature
 
-Possible enhancements:
+Users can send inquiries about a vehicle using the **Contact Dealer** form.
 
-* Pagination for inventory results
-* Vehicle categories (SUV, Sedan, Truck)
-* Customer contact form
-* Admin analytics dashboard
-* Image gallery for vehicles
+* Emails are sent using Nodemailer
+* Gmail App Password is required
+* Messages include vehicle details and customer info
 
 ---
 
-## Author
+## 🚀 Deployment Notes
+
+* Use Cloudinary for persistent image storage
+* Avoid local file uploads on platforms like Render
+* Ensure environment variables are set in production
+
+---
+
+## 🧠 What This Project Demonstrates
+
+* Full CRUD operations
+* Authentication and sessions
+* File upload handling
+* Third-party API integration
+* Clean MVC-style structure
+* Real-world backend architecture
+
+---
+
+## 👨‍💻 Author
 
 Kwota
 
-Built as a backend development final project demonstrating full CRUD functionality, authentication, and cloud file storage.
+Backend Development Final Project
